@@ -91,6 +91,7 @@ class Gameover extends React.Component {
             thumbupcolor: 'inherit',
             thumbdowncolor: 'inherit',
             feedback: 'Leave your feedback',
+            likdislikebuttonclicked: false,
         }
     }
     componentDidMount() {
@@ -106,20 +107,30 @@ class Gameover extends React.Component {
 
     handleThumbClick(e){
         //console.log("e target val "+ e);
+        if(!this.state.likdislikebuttonclicked) {
 
-        if(e==='thumbup'){
+            if (e === 'thumbup') {
+                this.setState({
+                    thumbupcolor: 'secondary',
+                    thumbdowncolor: 'inherit',
+                    likdislikebuttonclicked: true
+                })
+            } else {
+                this.setState({
+                    thumbdowncolor: 'secondary',
+                    thumbupcolor: 'inherit',
+                    likdislikebuttonclicked: true
+                })
+            }
             this.setState({
-                thumbupcolor: 'secondary',
+                feedback: 'Thank you for your feedback'
             })
-        }else {
+        }else{
             this.setState({
-                thumbdowncolor: 'secondary'
+                feedback: 'Your feedback is already submitted'
             })
         }
-        this.setState({
-            feedback: 'Thank you for your feedback'
-        })
-        //console.log("msg: "+msg)
+
     }
 
 

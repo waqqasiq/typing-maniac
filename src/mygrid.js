@@ -465,7 +465,7 @@ class Mygrid extends React.Component {
                                     <Typography className={classes.copyright} align="center">
                                         {'Copyright © '}
 
-                                        <a className={classes.link} href={"https://whoiswaqqas.netlify.com/"} target={"__blank"} > TYPIMG MANIAC | WAQQAS IQBAL</a>
+                                        <a className={classes.link} href={"https://whoiswaqqas.netlify.com/"} target={"__blank"} > TYPING MANIAC | WAQQAS IQBAL</a>
 
                                         {' '}
                                         {/*<Link className={classes.link} href="https://whoiswaqqas.netlify.com/">*/}

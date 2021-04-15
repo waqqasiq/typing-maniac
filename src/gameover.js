@@ -22,8 +22,7 @@ const useStyles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: '#115173',
-        height: window.innerHeight,
-
+        height: '100vh',
     },
     paper: {
         margin: '4%',
@@ -184,10 +183,9 @@ class Gameover extends React.Component {
 
         return (
             <React.Fragment>
-                <Appbar/>
 
                 <div className={classes.root}>
-
+                    <Appbar/>
 
                     <Grid container spacing={0} >
 

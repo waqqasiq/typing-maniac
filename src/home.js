@@ -57,7 +57,6 @@ class Home extends React.Component {
         return (
             <React.Fragment>
 
-                <Appbar/>
                 <MyGrid difficultymode={this.state.difficultmode} username={this.state.username}/>
 
             </React.Fragment>

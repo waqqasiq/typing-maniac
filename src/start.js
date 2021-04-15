@@ -16,7 +16,7 @@ const useStyles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: '#115173',
-        height: window.innerHeight,
+        height: '100vh',
     },
     paper: {
         margin: '4%',
@@ -141,10 +141,8 @@ class Start extends React.Component {
         return (
             <React.Fragment>
             
-
                 <div className={classes.root}>
                     <Appbar/>
-
 
                     <Grid container spacing={0} >
 

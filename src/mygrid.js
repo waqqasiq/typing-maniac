@@ -23,14 +23,14 @@ import words from './wordlist';
 import Easy from './wordlist_easy';
 import Medium from './wordlist_medium';
 import Hard from './wordlist_hard';
-
+import Appbar from './appbar'
 
 
 const useStyles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: '#115173',
-        height: window.innerHeight,
+        height: '100vh',
 
     },
     paper: {
@@ -38,7 +38,7 @@ const useStyles = theme => ({
         textAlign: 'center',
         color: 'whitesmoke',
         backgroundColor: '#022C43',
-        height: '107%'
+        height: '100%'
 
     },
     mygridclass: {
@@ -342,7 +342,7 @@ class Mygrid extends React.Component {
                     <React.Fragment>
 
                         <div className={classes.root}>
-
+                        <Appbar/>
 
                             <Grid container spacing={0}>
 
@@ -435,6 +435,7 @@ class Mygrid extends React.Component {
                 return (
                     <React.Fragment>
                     <div className={classes.root}>
+                        <Appbar/>
 
                         <Grid container spacing={0}>
 

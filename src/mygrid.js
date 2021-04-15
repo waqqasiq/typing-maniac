@@ -15,12 +15,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import withStyles from "@material-ui/core/styles/withStyles";
 import compose from 'recompose/compose'
 import PropTypes from "prop-types";
-import Appbar from "./appbar";
+//import Appbar from "./appbar";
 import Paper from "@material-ui/core/Paper";
-
-import SweetAlert from 'sweetalert2-react'
+//import SweetAlert from 'sweetalert2-react'
 import Badge from '@material-ui/core/Badge';
-import words from './wordlist'
+import words from './wordlist';
+import Easy from './wordlist_easy';
+import Medium from './wordlist_medium';
+import Hard from './wordlist_hard';
 
 
 
@@ -80,16 +82,32 @@ const useStyles = theme => ({
         fontSize: '12px',
         color: "grey",
         marginTop: theme.spacing(16)
+    },
+    difficulty: {
+        marginTop: theme.spacing(1),
+        color: 'dimgrey'
     }
 });
 
-const wordList = words;
+let wordList = words;
 //console.log('wordlist: ',wordList);
 
 class Mygrid extends React.Component {
     constructor(props){
         super(props);
+        let difficultymode = this.props.difficultymode;
+        console.log('props  username', this.props.username)
+        let username = this.props.username;
 
+        if(difficultymode==='Easy'){
+            wordList = Easy;
+        }else if(difficultymode==='Medium'){
+            wordList = Medium;
+        }else if(difficultymode==='Hard'){
+            wordList = Hard;
+
+        }
+        //console.log('my grid difficulty: ', difficultymode)
         this.state= {
             status: 'Game On!',
             currentTimer: 5,
@@ -105,6 +123,8 @@ class Mygrid extends React.Component {
             buttonText: 'START',
             score: 0,
             currentWordFixedTime: 5,
+            difficultymode: difficultymode,
+            username: username
             // self = this;
             //this.handleClick = this.handleClick.bind(this)
             //this.routeTo = this.routeTo.bind(this)
@@ -112,14 +132,14 @@ class Mygrid extends React.Component {
     }
 
 
-
-
     componentDidMount() {
 
         this.setState({
             word_list: wordList,
              score: 0,
-        })
+        });
+        //console.log(this.state.word_list);
+        console.log('this.state.username ', this.state.username);
 
         this.myTextField.focus();
 
@@ -172,9 +192,10 @@ class Mygrid extends React.Component {
                     timer: this.state.timer - 1,
                     currentTimer: timer
                 })
-            }else{
+            }
+            else{
                 clearInterval(this.Interval);
-                this.props.history.push({pathname:'/gameover', state:{message:'timeup', myscore: this.state.score}});
+                this.props.history.push({pathname:'/gameover', state:{message:'timeup', myscore: this.state.score, difficultymode: this.state.difficultymode, username: this.state.username}});
             }
         },1000)}
 
@@ -244,7 +265,7 @@ class Mygrid extends React.Component {
 
 
         if(gameover){
-            this.props.history.push({pathname:'/gameover', state:{message:'wrong', myscore: this.state.score}})
+            this.props.history.push({pathname:'/gameover', state:{message:'wrong', myscore: this.state.score,  difficultymode: this.state.difficultymode, username: this.state.username}})
         }
 
         this.setState({
@@ -270,7 +291,7 @@ class Mygrid extends React.Component {
 
             })
         }else{
-            this.props.history.push({pathname:'/gameover', state:{message: 'wrong', myscore: this.state.score}})
+            this.props.history.push({pathname:'/gameover', state:{message: 'wrong', myscore: this.state.score,  difficultymode: this.state.difficultymode, username: this.state.username}})
             this.setState({
                 status: 'Wrong!!!',
                 mytext: '',
@@ -313,7 +334,6 @@ class Mygrid extends React.Component {
     }
 
 
-
     render() {
         const {classes} = this.props;
 
@@ -333,7 +353,12 @@ class Mygrid extends React.Component {
                                 <Grid item xs={12} sm={6}>
                                     <Paper className={classes.paper} elevation={10}>
 
+
+
+
                                         <Typography className={classes.mygridclass} variant={"body1"} >Type the following word in the given time</Typography>
+                                        <Typography className={classes.difficulty} variant={"body2"} >{'Difficulty: '+this.state.difficultymode}</Typography>
+
 
                                         <Typography id="mytimer" className={classes.timer} variant={"h4"}>{this.state.currentTimer} s</Typography>
 
@@ -421,6 +446,8 @@ class Mygrid extends React.Component {
                                 <Paper className={classes.paper} elevation={10}>
 
                                     <Typography className={classes.mygridclass}  variant={"h6"}>Type the following word in the given time</Typography>
+                                    <Typography className={classes.difficulty} variant={"body2"} >{'Difficulty: '+this.state.difficultymode}</Typography>
+
 
                                     <Typography id="mytimer" className={classes.timer} variant={"h3"}>{this.state.currentTimer} s</Typography>
 

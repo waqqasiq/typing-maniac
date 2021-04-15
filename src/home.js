@@ -36,9 +36,14 @@ const useStyles = theme => ({
 class Home extends React.Component {
     constructor(props){
         super(props);
+        let difficultmode = this.props.location.state.difficultymode;
+        let username = this.props.location.state.username;
+        //console.log('home difficulty: ',difficultmode);
         this.state={
             data:[],
             errorAlert: false,
+            difficultmode: difficultmode,
+            username: username
         }
 
     }
@@ -48,12 +53,12 @@ class Home extends React.Component {
 
     render() {
         const {classes} = this.props;
-        console.log(this.state.data)
+        //console.log(this.state.data)
         return (
             <React.Fragment>
 
                 <Appbar/>
-                <MyGrid/>
+                <MyGrid difficultymode={this.state.difficultmode} username={this.state.username}/>
 
             </React.Fragment>
         );

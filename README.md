@@ -13,4 +13,4 @@ Click [here](https://wi-typingmaniac.netlify.com/) to try out the game yourself.
   ![](https://github.com/waqqasiq/typing-maniac/blob/master/public/screens/gameover.png)
 
 * Analytics Overview
-  ![](https://waadaainsurebucket.s3.ap-southeast-1.amazonaws.com/test/typing-maniac-wi.gif)
+  ![](https://waadaainsurebucket.s3.ap-southeast-1.amazonaws.com/test/new.gif)
